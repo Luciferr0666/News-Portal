@@ -1,0 +1,41 @@
+{{=form.custom.begin}}
+ 
+<div id="user_main">
+ 
+      First name:
+ 
+      <div>{{=form.custom.widget.first_name}}</div>
+ 
+      Last name:
+ 
+      <div>{{=form.custom.widget.last_name}}</div>
+ 
+      Gender:
+ 
+      <div>
+ 
+      {{=form.custom.widget.gender}}
+ 
+      </div>
+ 
+</div>
+ 
+<div id="user_contact">
+ 
+      Address:
+ 
+      <div>{{=form.custom.widget.address}}</div>
+ 
+      Postcode:
+ 
+      <div>{{=form.custom.widget.postcode}}</div>
+ 
+      Country:
+ 
+      <div>{{=form.custom.widget.country}}</div>
+ 
+      City:
+ 
+      <div>{{=form.custom.widget.city}}</div>
+ 
+</div>

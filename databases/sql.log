@@ -1,0 +1,114 @@
+timestamp: 2016-05-01T19:10:33.794880
+CREATE TABLE auth_user(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    first_name CHAR(128),
+    last_name CHAR(128),
+    email CHAR(512),
+    password CHAR(512),
+    registration_key CHAR(512),
+    reset_password_key CHAR(512),
+    registration_id CHAR(512)
+);
+success!
+timestamp: 2016-05-01T19:10:34.237247
+CREATE TABLE auth_group(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    role CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2016-05-01T19:10:34.415544
+CREATE TABLE auth_membership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE  
+);
+success!
+timestamp: 2016-05-01T19:10:34.571442
+CREATE TABLE auth_permission(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    group_id INTEGER REFERENCES auth_group (id) ON DELETE CASCADE  ,
+    name CHAR(512),
+    table_name CHAR(512),
+    record_id INTEGER
+);
+success!
+timestamp: 2016-05-01T19:10:34.705277
+CREATE TABLE auth_event(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    time_stamp TIMESTAMP,
+    client_ip CHAR(512),
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    origin CHAR(512),
+    description TEXT
+);
+success!
+timestamp: 2016-05-01T19:10:34.840153
+CREATE TABLE auth_cas(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    created_on TIMESTAMP,
+    service CHAR(512),
+    ticket CHAR(512),
+    renew CHAR(1)
+);
+success!
+timestamp: 2016-05-01T19:10:34.973101
+CREATE TABLE category(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name CHAR(512)
+);
+success!
+timestamp: 2016-05-01T19:10:35.118629
+CREATE TABLE news(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    heading CHAR(512),
+    tagline CHAR(512),
+    description CHAR(512),
+    category TEXT,
+    article_body TEXT,
+    article_footer TEXT,
+    tag CHAR(512),
+    rating INTEGER,
+    picture CHAR(512),
+    caption CHAR(512),
+    Youtube CHAR(512),
+    pic_1 CHAR(512),
+    pic_2 CHAR(512),
+    pic_3 CHAR(512),
+    likes INTEGER,
+    dislikes INTEGER,
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
+);
+success!
+timestamp: 2016-05-01T19:10:35.274415
+CREATE TABLE blog_comment(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    news INTEGER REFERENCES news (id) ON DELETE CASCADE  ,
+    Comments TEXT,
+    is_active CHAR(1),
+    created_on TIMESTAMP,
+    created_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  ,
+    modified_on TIMESTAMP,
+    modified_by INTEGER REFERENCES auth_user (id) ON DELETE CASCADE  
+);
+success!
+timestamp: 2016-05-01T19:10:35.521701
+CREATE TABLE ownership(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    news INTEGER REFERENCES news (id) ON DELETE CASCADE  ,
+    category INTEGER REFERENCES category (id) ON DELETE CASCADE  
+);
+success!
+timestamp: 2016-05-01T19:10:35.666638
+CREATE TABLE tags(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    giventag CHAR(512),
+    refcategory CHAR(512),
+    linkid INTEGER
+);
+success!
